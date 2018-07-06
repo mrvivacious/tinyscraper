@@ -52,7 +52,7 @@ function scrape() {
 function open() {
   chrome.tabs.getSelected(null, function(tab) {
       chrome.tabs.create(
-        {url: 'chrome-extension://cobhhiebnknmehjjnoipjagaabhokfch/popup2.html'}
+        {url: 'chrome-extension://papmnpdppbcnpmdbapdpfldemfcekdoi/popup2.html'}
       );
   });
 }
@@ -65,6 +65,7 @@ function get(idx) {
   console.log(url);
   // console.log('search2: ' + search);
 
+  // Thank you, http://api.jquery.com/jQuery.get/
   $.get(url, function(response) {
     print(response, idx);
   });
