@@ -1,8 +1,8 @@
 // tinyscraper
 // @author Vivek Bhookya
 
-var url1 =  'https://www.google.com/search?safe=active&q=ywca+phone+number+';
-  // 'https://www.google.com/search?safe=active&q=';
+var url1 = 'https://www.google.com/search?safe=active&q=';
+// 'https://www.google.com/search?safe=active&q=ywca+phone+number+';
 
 var url2 =
   '&npsic=0&rflfq=1&rldoc=1&rlha=0&rllag=40417254,-88914589,66646&tbm=' +
@@ -40,12 +40,12 @@ function scrape() {
       search = search.replace(' ', '+');
     }
     search += '+phone+number+';
-    alert('search: ' + search);
+    // alert('search: ' + search);
 
     // uncomment me to use
-    // for (let i = 0; i < states.length; i++) {
-    //   get(i);
-    // }
+    for (let i = 0; i < states.length; i++) {
+      get(i, search);
+    }
   }
 }
 
@@ -57,13 +57,12 @@ function open() {
   });
 }
 
-function get(idx) {
-  // console.log('search1: ' + search);
+function get(idx, search) {
+  // let url = url1 + states[idx] + url2;
 
-  let url = url1 + states[idx] + url2;
-  // let url = url1 + search + states[idx] + url2;
+  let url = url1 + search + states[idx] + url2;
+
   console.log(url);
-  // console.log('search2: ' + search);
 
   // Thank you, http://api.jquery.com/jQuery.get/
   $.get(url, function(response) {
