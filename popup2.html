@@ -1,0 +1,107 @@
+<!-- tinyscraper -->
+<!-- Popup menu -->
+<!-- @author Vivek Bhookya -->
+
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+
+<head>
+  <title>Tiny scraper</title>
+<!-- /////////// CSS ////////// -->
+  <style type="text/css">
+    body {
+      width: 200px;
+    }
+  </style>
+<!-- /////////// CSS ////////// -->
+
+  <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+    -->
+ <script src="jquery.min.js"></script>
+ <script src="scraper.js"></script>
+
+</head>
+
+<body>
+  <h1><em>Tiny scraper</em></h1>
+
+  <div id="container">
+    <div id="vertical-menu" class="vertical-menu">
+      <button id="open">Open</button>
+      <br><br><br>
+      <p>organization name only plz</p>
+      <input id="search">
+      <br><br><br>
+      <button id="scrape">Scrape!</button>
+    </div>
+
+    <br><br><br>
+    <p id="content">filler</p>
+
+    <p id="AL">Alabama</p>
+  	<p id="AK">Alaska</p>
+  	<p id="AZ">Arizona</p>
+  	<p id="AR">Arkansas</p>
+  	<p id="CA">California</p>
+  	<p id="CO">Colorado</p>
+  	<p id="CT">Connecticut</p>
+  	<p id="DE">Delaware</p>
+  	<p id="DC">District Of Columbia</p>
+  	<p id="FL">Florida</p>
+  	<p id="GA">Georgia</p>
+  	<p id="HI">Hawaii</p>
+  	<p id="ID">Idaho</p>
+  	<p id="IL">Illinois</p>
+  	<p id="IN">Indiana</p>
+  	<p id="IA">Iowa</p>
+  	<p id="KS">Kansas</p>
+  	<p id="KY">Kentucky</p>
+  	<p id="LA">Louisiana</p>
+  	<p id="ME">Maine</p>
+  	<p id="MD">Maryland</p>
+  	<p id="MA">Massachusetts</p>
+  	<p id="MI">Michigan</p>
+  	<p id="MN">Minnesota</p>
+  	<p id="MS">Mississippi</p>
+  	<p id="MO">Missouri</p>
+  	<p id="MT">Montana</p>
+  	<p id="NE">Nebraska</p>
+  	<p id="NV">Nevada</p>
+  	<p id="NH">New Hampshire</p>
+  	<p id="NJ">New Jersey</p>
+  	<p id="NM">New Mexico</p>
+  	<p id="NY">New York</p>
+  	<p id="NC">North Carolina</p>
+  	<p id="ND">North Dakota</p>
+  	<p id="OH">Ohio</p>
+  	<p id="OK">Oklahoma</p>
+  	<p id="OR">Oregon</p>
+  	<p id="PA">Pennsylvania</p>
+  	<p id="RI">Rhode Island</p>
+  	<p id="SC">South Carolina</p>
+  	<p id="SD">South Dakota</p>
+  	<p id="TN">Tennessee</p>
+  	<p id="TX">Texas</p>
+  	<p id="UT">Utah</p>
+  	<p id="VT">Vermont</p>
+  	<p id="VA">Virginia</p>
+  	<p id="WA">Washington</p>
+  	<p id="WV">West Virginia</p>
+  	<p id="WI">Wisconsin</p>
+  	<p id="WY">Wyoming</p>
+    <!-- End of vertical-menu -->
+
+  </div>
+  <!-- Close container -->
+</body>
+
+</html>
