@@ -1,14 +1,15 @@
 // tinyscraper
+// All functionality
 // @author Vivek Bhookya
 
+// These urls are used to construct the appropriate Google search
 var url1 = 'https://www.google.com/search?safe=active&q=';
-// 'https://www.google.com/search?safe=active&q=ywca+phone+number+';
-
 var url2 =
   '&npsic=0&rflfq=1&rldoc=1&rlha=0&rllag=40417254,-88914589,66646&tbm=' +
   'lcl&sa=X&ved=0ahUKEwjii9nYsoncAhXC6oMKHQ1MD7YQtgMIOA#rlfi=hd:;si:;mv:!1m3!1d1731836.' +
   '4266827106!2d-88.8142053!3d40.1643782!2m3!1f0!2f0!3f0!3m2!1i120!2i213!4f13.1;tbs:lrf:!2m1!1e3!2m1!1e16!3sIAE,lf:1,lf_ui:4';
 
+// USA states + District of Columbia
 var abbr = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN',
   'IA','KS','KY','LA','ME','MD','MA','MI','MN','MS',
@@ -26,29 +27,34 @@ var states = [
   'Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'
 ];
 
-
 $(document).ready(function () {
   $("#scrape").click(scrape);
   $("#open").click(open);
 });
 
+// Function scrape()
+// Gets search parameters, cleans it, and calls get() with the query for
+//  each state
 function scrape() {
-  let search = document.getElementById('search').value;
+  let search = document.getElementById('search').value.trim();
 
-  if (search !== undefined) {
+  if (search !== '') {
     while (search.includes(' ')) {
       search = search.replace(' ', '+');
     }
     search += '+phone+number+';
     // alert('search: ' + search);
 
-    // uncomment me to use
+    // Google may ban you after receiving too many requests in too little time
+    // Simply search for whatever and solve the captcha to rerun
     for (let i = 0; i < states.length; i++) {
       get(i, search);
     }
   }
 }
 
+// Function open()
+// Opens tinyscraper in a new tab should one not prefer the popup
 function open() {
   chrome.tabs.getSelected(null, function(tab) {
       chrome.tabs.create(
@@ -57,11 +63,12 @@ function open() {
   });
 }
 
+// Function get()
+// Constructs full url and does JQuery $.get() to retrieve the url's DOM
+// @param idx Index to collect state and abbr of
+// @param search The search query of the desired organization
 function get(idx, search) {
-  // let url = url1 + states[idx] + url2;
-
   let url = url1 + search + states[idx] + url2;
-
   console.log(url);
 
   // Thank you, http://api.jquery.com/jQuery.get/
@@ -70,12 +77,18 @@ function get(idx, search) {
   });
 }
 
-// prints in javascript format
+// Function print()
+// Finds phone numbers in the DOM and prints a string with the state abbr and
+//  the phone numbers in JS format
+// Entire document will appear as a giant JS dictionary -- ready for copy paste
 function print(response, idx) {
+  // Collect elements containing the phone numbers
   let data = $(response).find('.lqhpac span');
 
+  // str is the finished output
   let str = '[';
 
+  // Collect phone number items and clean them up
   for (let i = 0; data[i] !== undefined; i++) {
     if ( data[i].innerHTML[0] === '(' ) {
       str += data[i].innerHTML.replace('(','').replace(')','').replace('-','').replace(' ','');
@@ -84,7 +97,7 @@ function print(response, idx) {
     }
   }
 
-  // Properaly format the output
+  // Properaly format the output (WY is the last state)
   if (abbr[idx] !== 'WY') {
     str += '],';
   }
@@ -92,8 +105,10 @@ function print(response, idx) {
     str += ']';
   }
 
+  // Bug fixer
   str = str.replace(', ]', ']');
   let preface = '\'' + abbr[idx] + '\': ';
 
+  // Have fun
   document.getElementById(abbr[idx]).innerHTML = preface + str;
 }
