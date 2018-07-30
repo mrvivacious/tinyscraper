@@ -21,4 +21,4 @@ Reload the extension through chrome://extensions.
 
 ### <em>"I want 2 scrape my own stuff from every state."</em>
 
-Change the JQuery (and associated reformatting procedures) in scrape() with the id of the desired element. 
+Change the jQuery (and associated reformatting procedures) in scrape() with the id of the desired element. 
